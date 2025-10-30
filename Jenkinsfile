@@ -4,7 +4,7 @@ pipeline {
     environment{
         PRIV_IP=credentials('PRIV')
         INS_IP=credentials('DEMO')
-        GCHAT_URL=credentials('gchaturl')
+        
     }
 
     stages {
@@ -46,7 +46,7 @@ pipeline {
             node('agent1') {
 
                 googlechatnotification(
-                    url: '${GCHAT_URL}',
+                    url: "id:gchaturl",
                     message: "${env.JOB_NAME} : Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}: Check output at ${env.BUILD_URL}"
                 )
         }
