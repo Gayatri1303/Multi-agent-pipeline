@@ -1,4 +1,3 @@
-ssh -i ~/.ssh/key123.pem ubuntu@${INS_IP}
 sudo apt update
 sudo apt install docker.io -y
 sudo systemctl enable docker
