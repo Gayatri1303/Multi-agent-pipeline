@@ -13,13 +13,15 @@ pipeline {
                 stage('Deploy app on private ec2'){
                     agent {label 'agent2'}
                     steps {
+                        sh 'sudo chmod +x script2.sh'
                         sh './script2.sh'
                     }
                 }
 
-                stage('Deploy app on agent 2'){
+                stage('Deploy app on  other agent'){
                     agent {label 'agent1'}
                     steps {
+                        sh 'sudo chmod +x script1.sh'
                         sh './script1.sh'
                     }
                 }
@@ -29,7 +31,7 @@ pipeline {
 
    post {
         always {
-            node('any') {
+            node('agent1') {
 
                 googlechatnotification(
                     url: '${GCHAT_URL}',
