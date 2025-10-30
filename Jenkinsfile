@@ -11,6 +11,7 @@ pipeline {
         stage('Deploy app on private ec2'){
             agent {label 'agent2'}
             steps {
+                sh 'sudo su'
                 sh './script2.sh'
             }
         }
@@ -18,6 +19,7 @@ pipeline {
         stage('Deploy app on agent 2'){
             agent {label 'agent1'}
             steps {
+                sh 'sudo su'
                 sh './script1.sh'
             }
         }
