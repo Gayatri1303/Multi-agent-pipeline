@@ -26,9 +26,13 @@ pipeline {
 
     }
 
-    post {
-       googlechatnotification url: '${GCHAT_URL}',
-    message: "${env.JOB_NAME} : Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}: Check output at ${env.BUILD_URL}"
+   post {
+        always {
+            googlechatnotification(
+                url: "${GCHAT_URL}",
+                message: "${env.JOB_NAME} : Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}: Check output at ${env.BUILD_URL}"
+            )
+        }
     }
 
 
