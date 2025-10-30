@@ -6,4 +6,5 @@ sudo usermod -aG docker ubuntu
 sudo chmod 666 /var/run/docker.sock
 docker pull nginx:latest
 docker stop demo || true
+docker rm demo || true
 docker run -d -p 80:80 --name demo nginx:latest

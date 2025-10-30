@@ -6,4 +6,5 @@ sudo usermod -aG docker ubuntu
 sudo chmod 666 /var/run/docker.sock
 docker pull gayatri491/frontend_app3:latest 
 docker stop frontendapp || true
+docker rm frontendapp || true
 docker run -d -p 80:80 --name frontendapp gayatri491/frontend_app3:latest
