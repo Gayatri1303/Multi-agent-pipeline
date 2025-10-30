@@ -8,29 +8,28 @@ pipeline {
     }
 
     stages {
-        stage('Deploy app on private ec2'){
-            agent {label 'agent2'}
-            steps {
-                sh 'sudo su'
-                sh './script2.sh'
+        stage('Parallel Deployment') {
+            parallel{
+                stage('Deploy app on private ec2'){
+                    agent {label 'agent2'}
+                    steps {
+                        sh './script2.sh'
+                    }
+                }
+
+                stage('Deploy app on agent 2'){
+                    agent {label 'agent1'}
+                    steps {
+                        sh './script1.sh'
+                    }
+                }
             }
         }
-
-        stage('Deploy app on agent 2'){
-            agent {label 'agent1'}
-            steps {
-                sh 'sudo su'
-                sh './script1.sh'
-            }
-        }
-
-        
-
     }
 
    post {
         always {
-            node {
+            node('any') {
 
                 googlechatnotification(
                     url: '${GCHAT_URL}',
