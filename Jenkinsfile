@@ -15,11 +15,11 @@ pipeline {
                     steps {
                         sh '''
                         scp -i ~/.ssh/key123.pem script2.sh ubuntu@${PRIV_IP}:/home/ubuntu/
-                        ssh -i ~/.ssh/key123.pem ubuntu@${PRIV_IP}'
-                        '
-                        sudo chmod +x script2.sh
-                        ./script2.sh
-                        '
+                        ssh -i ~/.ssh/key123.pem ubuntu@${PRIV_IP} \"
+                        
+                            sudo chmod +x script2.sh
+                            ./script2.sh
+                        \"
                         '''
                     }
                 }
@@ -29,11 +29,11 @@ pipeline {
                     steps {
                         sh '''
                         scp -i ~/.ssh/key123.pem script1.sh ubuntu@${INS_IP}:/home/ubuntu/
-                        ssh -i ~/.ssh/key123.pem ubuntu@${INS_IP}
-                        '
-                        sudo chmod +x script1.sh
-                        ./script1.sh
-                        '
+                        ssh -i ~/.ssh/key123.pem ubuntu@${INS_IP} \"
+                        
+                            sudo chmod +x script1.sh
+                            ./script1.sh
+                        \"
                         '''
                     }
                 }
